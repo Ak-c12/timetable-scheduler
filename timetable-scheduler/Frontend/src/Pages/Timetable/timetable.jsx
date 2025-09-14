@@ -85,14 +85,32 @@ export default function Timetable() {
   };
 
   const handleSubmit = async (slotData) => {
+    try{
     if (editingSlot) {
-      await TimeSlot.update(editingSlot.id, slotData);
+      const response = await fetch('http://127.0.0.1:5000/get_timetable',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(slotData)
+      });
+      await response.json();
+      }
     } else {
-      await TimeSlot.create(slotData);
+       const response = await fetch("http://localhost:5000/generate_timetable", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(slotData),
+    });
+    await response.json();
     }
+    
     setShowForm(false);
     setEditingSlot(null);
     loadTimetableData();
+    } catch (error) {
+      console.error("Error saving time slot:", error);
+    }
   };
 
   const handleEdit = (slot) => {

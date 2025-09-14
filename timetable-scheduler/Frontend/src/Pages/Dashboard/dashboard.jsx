@@ -35,6 +35,18 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    fetch("http://127.0.0.1:5000/generate_timetable")
+      .then((res) =>  res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching timetable:", error);
+      });
+      
+  }, []);
+
+  useEffect(() => {
     loadDashboardData();
   }, []);
 
