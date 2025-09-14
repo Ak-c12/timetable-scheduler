@@ -74,7 +74,7 @@ export default function Layout({ children }) {
                 <GraduationCap className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h2 className="font-bold text-gray-900 text-lg">EduScheduler</h2>
+                <h2 className="font-bold text-gray-900 text-lg">AkScheduler</h2>
                 <p className="text-xs text-blue-600 font-medium">College Timetable System</p>
               </div>
             </div>
