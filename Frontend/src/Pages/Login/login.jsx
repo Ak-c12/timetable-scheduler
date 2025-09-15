@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 function Login() {
@@ -6,6 +7,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -21,7 +23,7 @@ function Login() {
     setSuccess("");
 
     try {
-      const response = await fetch("/api/login", {
+      const response = await fetch("/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,8 +40,9 @@ function Login() {
       localStorage.setItem("token", data.access_token);
 
       setSuccess("Login successful! Redirecting...");
-      // TODO: redirect to dashboard page
-      window.location.href = "/dashboard";
+      setTimeout(() => {
+        navigate("/dashboard");
+      })
     } catch (err) {
       setError(err.message);
     } finally {

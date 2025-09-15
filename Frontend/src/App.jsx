@@ -8,13 +8,16 @@ import Login from "../src/Pages/Login/login";
 import Layout from "../src/Layout/Layout";
 import PrivateRoute from "../src/Routes/PrivateRoute";
 import React from "react";
+
 // import TestShadcn from "../src/Pages/TestShadcn";
 
 
 function App() {
+  const 
   return (
     
       <Layout>
+        
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
@@ -26,6 +29,7 @@ function App() {
           <Route path="*" element={<Login />} />
           
         </Routes>
+        
      </Layout>
 
   );

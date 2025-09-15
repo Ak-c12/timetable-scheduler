@@ -87,28 +87,27 @@ export default function Timetable() {
   const handleSubmit = async (slotData) => {
     try{
     if (editingSlot) {
-      const response = await fetch('http://127.0.0.1:5000/get_timetable',{
+      const response = await fetch('http://127.0.0.1:5000/generate_timetable',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(slotData)
       });
-      await response.json();
-      }
-    } else {
-       const response = await fetch("http://localhost:5000/generate_timetable", {
+      const data = await response.json();
+      console.log("Response:", data);
+      } else {
+       const response = await fetch("http://127.0.0.1:5000/get_timetable", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(slotData),
     });
     await response.json();
     }
-    
     setShowForm(false);
     setEditingSlot(null);
     loadTimetableData();
-    } catch (error) {
+    }  catch (error) {
       console.error("Error saving time slot:", error);
     }
   };
