@@ -1,0 +1,11 @@
+name,type,credits,year,semester,dept_name,faculty_id,faculty_name
+math,Theory,3,1,1,Mathematics,2,mohan
+physics,Theory,3,1,2,Computer Science,3,yash
+chemistry,Theory,4,2,3,dsa,4,zaid
+bio,Theory,6,2,4,Physics,5,komal
+hindi,Theory,3,3,5,biology,6,yash sharma
+english,Theory,4,1,6,maths3,7,jaya
+accounts,Theory,2,2,7,CSE,8,himanshu
+bee,Theory,4,3,8,Aiml,9,kiran
+mpi,Theory,3,2,1,Electronics,10,arun
+flat,Theory,4,1,2,Data Science,11,sneha

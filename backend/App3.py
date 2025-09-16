@@ -16,7 +16,7 @@ from flask_mail import Mail, Message
 
 # ---------- FLASK SETUP ----------
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 app.url_map.strict_slashes = False
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -218,13 +218,14 @@ def _extract_token_from_request():
         print("DEBUG: No token found in headers")
         print(f"DEBUG: Available headers: {list(request.headers.keys())}")
     return x_token
+    
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token =  _extract_token_from_request()
         if not token:
             return jsonify({"error": "Token missing"}), 401
-        try:
+        try: 
             data = jwt.decode(token, app.config["SECRET_KEY"], algorithms=["HS256"])
             current_user = User.query.get(data["user_id"])
             if not current_user or not current_user.is_active:
@@ -705,31 +706,34 @@ def admin_faculty(current_user):
             return jsonify({"error": f"Failed to add faculty: {str(e)}"}), 500
 
 @app.route("/admin/courses", methods=["GET", "POST"])
-@token_required
-@admin_required
-def admin_courses(current_user):
+# @token_required
+# @admin_required
+def admin_courses():
     if request.method == "GET":
         try:
             courses = Course.query.all()
-            return jsonify([
-                {
-                    "id": c.course_id,
-                    "name": c.name,
-                    "type": c.type,
-                    "credits": c.credits,
-                    "hours_per_week": c.hours_per_week, # Added field
-                    "year": c.year,
-                    "semester": c.semester,
-                    "dept_name": c.department.dept_name if c.department else None,
-                    "faculty_name": c.faculty.faculty_name if c.faculty else None,
-                    # --- Added fields for fixed slots ---
-                    "is_fixed": c.is_fixed,
-                    "fixed_day": c.fixed_day,
-                    "fixed_slot": c.fixed_slot,
-                    "fixed_room_id": c.fixed_room_id
-                }
-                for c in courses
-            ])
+
+                # {
+                #     "id": c.course_id,
+                #     "name": c.name,
+                #     "type": c.type,
+                #     "credits": c.credits,
+                #     "hours_per_week": c.hours_per_week, # Added field
+                #     "year": c.year,
+                #     "semester": c.semester,
+                #     "dept_name": c.department.dept_name if c.department else None,
+                #     "faculty_name": c.faculty.faculty_name if c.faculty else None,
+                #     # --- Added fields for fixed slots ---
+                #     "is_fixed": c.is_fixed,
+                #     "fixed_day": c.fixed_day,
+                #     "fixed_slot": c.fixed_slot,
+                #     "fixed_room_id": c.fixed_room_id
+                # }
+                # for c in courses
+
+            return jsonify(
+                courses
+            )
         except Exception as e:
             return jsonify({"error": f"Failed to fetch courses: {str(e)}"}), 500
     
@@ -1162,7 +1166,7 @@ def login():
                 "department": user.department.dept_name if user.department else None
             }), 200
         
-        return jsonify({"error": "Invalid credentials"}), 401
+        return jsonify({"error": "Invalid credentials"}), 400
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 # -----------------------
@@ -1184,7 +1188,7 @@ def admin_login():
 
         if not user or not user.check_password(password):
             # Avoid user enumeration
-            return jsonify({"error": "Invalid admin credentials"}), 401
+            return jsonify({"error": "Invalid admin credentials"}), 400
 
         token = jwt.encode(
             {
@@ -1204,7 +1208,6 @@ def admin_login():
         }), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 # ---------- ROOM OCCUPANCY ROUTES ----------
 @app.route("/teacher/mark_room", methods=["GET", "POST", "OPTIONS"])

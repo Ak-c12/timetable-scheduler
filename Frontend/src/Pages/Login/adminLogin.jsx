@@ -28,14 +28,14 @@ function Login() {
       var response = await login(formData.username, formData.password);
       console.log("the response from login api call is ", response);
 
-      if(response.status ==200)
+      if(response)
       {
       setSuccess("Login successful! Redirecting...");
       navigate("/dashboard")
       }
       else{
-        setError("Login Failed ")
-        // navigate("/login")
+        setSuccess("Login Failed ")
+        navigate("/login")
       }
      
     } catch (err) {
@@ -53,7 +53,7 @@ function Login() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 to-indigo-200">
       <div className="bg-white shadow-lg rounded-2xl p-8 w-96">
         <h2 className="text-2xl font-bold text-center text-indigo-600 mb-6">
-          AkScheduler Admin Login
+          AkScheduler Login
         </h2>
 
         {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
@@ -96,7 +96,6 @@ function Login() {
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
-
       </div>
     </div>
   );

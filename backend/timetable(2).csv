@@ -1,0 +1,11 @@
+course,faculty,room,day,slot,year,semester,dept_name
+math,,303,Fri,9:00-10:00,2,2,Computer Science
+pps,,Room-101,Fri,10:05-10:50,1,1,Computer Science
+phy,,Room-101,Mon,10:55-11:00,1,1,Physics
+m3,,Room-101,Fri,11:05-11:50,1,1,civil
+bio,,Room-102,sat,11:55-12:45,1,1,mechanical
+science,,Room-103,thur,12:45-1:40,1,2,electronics
+mpi,,Room-104,sat,1:40-2:35,2,3,Mathematics
+chemistry,,Room-105,tues,2:35-3:40,2,4,Physics
+bee,,Room-106,thur,3:40-4:35,3,5,Computer Science
+sst,,Room-107,tues,,1,6,Mathematics

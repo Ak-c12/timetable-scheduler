@@ -95,12 +95,13 @@ export default function Timetable() {
         body: JSON.stringify(slotData)
       });
       const data = await response.json();
-      console.log("Response:", data);
+      console.log("Generated Timetable:", data);
+      
+      if (data?.timetable) {
+      setTimeSlots(data.timetable);
       } else {
-       const response = await fetch("http://127.0.0.1:5000/get_timetable", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(slotData),
+         loadTimetableData();
+      }
     });
     await response.json();
     }

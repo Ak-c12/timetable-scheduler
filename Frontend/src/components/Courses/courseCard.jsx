@@ -6,14 +6,14 @@ import { BookOpen, Edit, Users, Clock } from "lucide-react";
 
 const departmentColors = {
   "Computer Science": "bg-blue-100 text-blue-800",
-  "Mathematics": "bg-purple-100 text-purple-800",
-  "Physics": "bg-green-100 text-green-800",
-  "Chemistry": "bg-orange-100 text-orange-800",
-  "Biology": "bg-emerald-100 text-emerald-800",
-  "English": "bg-pink-100 text-pink-800",
-  "History": "bg-amber-100 text-amber-800",
-  "Business": "bg-indigo-100 text-indigo-800",
-  "Engineering": "bg-red-100 text-red-800",
+  "Information Technology": "bg-purple-100 text-purple-800",
+  "Electrical": "bg-green-100 text-green-800",
+  "AIDS": "bg-orange-100 text-orange-800",
+  "AIML": "bg-emerald-100 text-emerald-800",
+  "Cybersecurity": "bg-pink-100 text-pink-800",
+  "Mechanical": "bg-amber-100 text-amber-800",
+  "BBA": "bg-indigo-100 text-indigo-800",
+  "Civil": "bg-red-100 text-red-800",
   "Psychology": "bg-cyan-100 text-cyan-800"
 };
 

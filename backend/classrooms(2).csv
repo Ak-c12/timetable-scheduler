@@ -1,0 +1,11 @@
+name,capacity,resources
+Room-101,50,"Projector, AC"
+Room-102,40,Whiteboard
+Lab-201,30,"Computers, AC"
+Room-103,60,Smart Board
+Lab-202,25,Lab Equipment
+Lab-201,30,"Projector, AC"
+Lab-202,30,"Computers, AC"
+Room-106 ,40,Lab Equipment
+Room-103 ,50,"Projector, AC"
+Room-105 ,15,"Computers, AC"

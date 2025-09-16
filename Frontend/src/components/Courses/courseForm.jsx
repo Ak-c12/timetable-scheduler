@@ -17,7 +17,7 @@ export default function CourseForm({ course, onSubmit, onCancel }) {
     name: course?.name || "",
     code: course?.code || "",
     department: course?.department || "",
-    credits: course?.credits || 3,
+    type: course?.type || 3,
     semester: course?.semester || "",
     description: course?.description || ""
   });
@@ -56,7 +56,7 @@ export default function CourseForm({ course, onSubmit, onCancel }) {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="code">Course Code *</Label>
+              <Label htmlFor="code">Type</Label>
               <Input
                 id="code"
                 value={formData.code}
@@ -81,7 +81,8 @@ export default function CourseForm({ course, onSubmit, onCancel }) {
                 </SelectContent>
               </Select>
             </div>
-            <div className="space-y-2">
+            
+            {/* <div className="space-y-2">
               <Label htmlFor="credits">Credits *</Label>
               <Select value={formData.credits.toString()} onValueChange={(value) => handleChange('credits', parseInt(value))}>
                 <SelectTrigger>
@@ -93,7 +94,7 @@ export default function CourseForm({ course, onSubmit, onCancel }) {
                   ))}
                 </SelectContent>
               </Select>
-            </div>
+            </div> */}
             <div className="space-y-2">
               <Label htmlFor="semester">Semester *</Label>
               <Select value={formData.semester} onValueChange={(value) => handleChange('semester', value)}>
@@ -101,9 +102,14 @@ export default function CourseForm({ course, onSubmit, onCancel }) {
                   <SelectValue placeholder="Select semester" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Fall">Fall</SelectItem>
-                  <SelectItem value="Spring">Spring</SelectItem>
-                  <SelectItem value="Summer">Summer</SelectItem>
+                  <SelectItem value="1st">1</SelectItem>
+                  <SelectItem value="2nd">2</SelectItem>
+                  <SelectItem value="3rd">3</SelectItem>
+                  <SelectItem value="4th">4</SelectItem>
+                  <SelectItem value="5th">5</SelectItem>
+                  <SelectItem value="6th">6</SelectItem>
+                  <SelectItem value="7th">7</SelectItem>
+                  <SelectItem value="8th">8</SelectItem>  
                 </SelectContent>
               </Select>
             </div>
